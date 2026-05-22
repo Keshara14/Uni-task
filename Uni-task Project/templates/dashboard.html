@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Journey Dashboard</title>
+
+    <!-- CSS File -->
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<nav>
+    <div class="logo"><strong>TaskMaster</strong></div>
+
+    <div class="nav-links">
+        <button><i class="fa fa-home"></i> Home</button>
+        <button>Sign In</button>
+        <button class="logout-btn">Log Out</button>
+    </div>
+</nav>
+
+<div class="container">
+
+    <header>
+        <h1>Welcome back, Study journey 👋</h1>
+        <p>Here's what's happening with your academic journey</p>
+    </header>
+
+    <!-- Top Stats -->
+    <div class="metrics-grid">
+
+        <div class="card">
+            <i class="fa fa-list-check" style="color:#4a90e2"></i>
+            <h3>1</h3>
+            <span>Total Tasks</span>
+        </div>
+
+        <div class="card">
+            <i class="fa fa-circle-check" style="color:#48bb78"></i>
+            <h3>0</h3>
+            <span>Completed</span>
+        </div>
+
+        <div class="card">
+            <i class="fa fa-clock" style="color:#f6ad55"></i>
+            <h3>1</h3>
+            <span>Pending</span>
+        </div>
+
+        <div class="card">
+            <i class="fa fa-chart-line" style="color:#38b2ac"></i>
+            <h3>0.0%</h3>
+            <span>Completion Rate</span>
+        </div>
+
+    </div>
+
+    <div class="main-content">
+
+        <!-- My Tasks -->
+        <div class="glass-panel">
+
+            <div class="task-header">
+                <h2>My Tasks</h2>
+                <button class="add-btn">+ Add Task</button>
+            </div>
+
+            <div class="task-item">
+
+                <span class="task-tag">ASSIGNMENT</span>
+
+                <strong>Name</strong>
+
+                <p class="task-desc">uyguyg</p>
+
+                <div class="task-icons">
+                    <i class="fa fa-circle-check" title="Done"></i>
+
+                    <i class="fa fa-hourglass-half" title="Pending"></i>
+
+                    <i class="fa fa-trash delete-icon" title="Delete"></i>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+
+            <!-- Breakdown -->
+            <div class="glass-panel">
+
+                <h2>Task Breakdown</h2>
+
+                <canvas id="myChart"></canvas>
+
+                <ul class="breakdown-list">
+
+                    <li>
+                        <span>
+                            <span class="dot blue"></span>
+                            Assignments
+                        </span>
+                        <strong>1</strong>
+                    </li>
+
+                    <li>
+                        <span>
+                            <span class="dot red"></span>
+                            Exams
+                        </span>
+                        <strong>0</strong>
+                    </li>
+
+                    <li>
+                        <span>
+                            <span class="dot green"></span>
+                            Lectures
+                        </span>
+                        <strong>0</strong>
+                    </li>
+
+                    <li>
+                        <span>
+                            <span class="dot gray"></span>
+                            Other
+                        </span>
+                        <strong>0</strong>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            <!-- Upcoming -->
+            <div class="glass-panel upcoming-box">
+
+                <h2>Upcoming Tasks</h2>
+
+                <p>Tasks coming soon</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'doughnut',
+
+        data: {
+            labels: ['Assignments', 'Exams', 'Lectures', 'Other'],
+
+            datasets: [{
+                data: [1, 0, 0, 0],
+
+                backgroundColor: [
+                    '#3182ce',
+                    '#e53e3e',
+                    '#38a169',
+                    '#718096'
+                ],
+
+                borderWidth: 0
+            }]
+        },
+
+        options: {
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+
+            cutout: '70%'
+        }
+    });
+</script>
+
+</body>
+</html>
