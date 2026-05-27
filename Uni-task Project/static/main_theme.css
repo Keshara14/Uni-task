@@ -1,7 +1,5 @@
-/* Remove the universal * selector reset, as it's now handled globally in theme.css */
-
 body {
-    background: linear-gradient(to right, #f5f5f5, #eef4f7); /* Kept gradient style */
+    background: var(--clr-bg-body);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -16,26 +14,55 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
-/* ... Other customized elements ... */
+.icon {
+    text-align: center;
+    font-size: 50px;
+    color: var(--clr-primary);
+    margin-bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+    color: var(--clr-text-dark);
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--clr-text-muted);
+    margin-bottom: 30px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 15px;
+    font-weight: bold;
+    color: var(--clr-text-dark);
+}
 
 form input {
-    /* width, padding, font-size handled by theme fallback rules, custom borders go here: */
+    width: 100%;
+    padding: 14px;
     border: 1px solid var(--clr-border); 
-    background: var(--clr-bg-panel);
+    border-radius: var(--br-radius-sm);
+    background: var(--clr-bg-input);
+    font-size: 15px;
+    transition: border 0.3s ease;
+    display: block;
 }
 
 form input:focus {
     outline: none;
     border: 1px solid var(--clr-secondary);
+    background: var(--clr-bg-panel);
 }
 
-button {
-    width: 100%;
-    margin-top: 25px;
-    background: var(--clr-secondary); /* Dynamic branding */
-    color: white;
+.password-text {
+    color: var(--clr-text-muted);
+    font-size: 13px;
+    margin-top: 5px;
 }
 
-button:hover {
-    background: var(--clr-secondary-hover);
-}
+
+
