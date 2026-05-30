@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="AddNewTask.css">
+    <script src="AddNewTask.js"></script>
+</head>
+<body>
+    <body>
+
+         <div class="card">
+             <h1>Add New Task</h1>
+
+             <div class="field">
+                  <label for="task-title">Task Title</label>
+                  <input type="text" id="task-title" class="tsklabel">
+             </div>
+
+             <div class="field">
+                  <label for="description">Description:</label>
+                  <textarea id="description" class="desclabel"></textarea>
+             </div>
+
+             <div class="field">
+                  <label for="category">Category</label>
+                  <select id="category" class="selector">
+                      <option>Assignments</option>
+                      <option>Exams</option>
+                      <option>Lectures</option>
+                      <option>Other</option>
+                  </select>
+             </div>
+
+             <div class="field">
+                 <div class="dt-trigger-row">
+                      <label>Deadline &amp; Time</label>
+                      <div class="dt-display" id="dt-trigger" onclick="openPicker()">
+                          <span class="dt-text" id="dt-display-text">Select date &amp; time</span>
+                          <span class="dt-icon">&#128197;</span>
+                      </div>
+                 </div>
+             </div>
+
+             <hr class="divider">
+             <div class="btn-row">
+                 <button class="btn-save" onclick="saveTask()">Save Task</button>
+                  <button class="btn-cancel" onclick="cancelTask()">Cancel</button>
+              </div>
+             </div>
+
+
+             <div class="dt-overlay" id="dt-overlay">
+               <div class="dt-popup">
+
+                 <div class="dt-popup-header">
+                  <div class="lbl">SELECTED DATE &amp; TIME</div>
+                  <div class="val-date" id="ph-date">—</div>
+                  <div class="val-time" id="ph-time">—</div>
+                 </div>
+
+            <div class="dt-tabs">
+               <div class="dt-tab active" id="tab-cal" onclick="switchTab('cal')">&#128197; Date</div>
+               <div class="dt-tab" id="tab-time" onclick="switchTab('time')">&#128336; Time</div>
+             </div>
+
+             <div class="dt-panel active" id="panel-cal">
+               <div class="cal-nav">
+                 <button onclick="changeMonth(-1)">&#8249;</button>
+                 <span class="cal-month-lbl" id="cal-month-lbl"></span>
+                 <button onclick="changeMonth(1)">&#8250;</button>
+               </div>
+               <div class="cal-grid" id="cal-grid"></div>
+              </div>
+
+             <div class="dt-panel" id="panel-time">
+               <div class="time-panel-inner">
+                 <div class="time-col">
+                     <button onclick="changeHr(1)">&#8963;</button>
+                     <div class="time-val-box" id="hr-box">12</div>
+                       <button onclick="changeHr(-1)">&#8964;</button>
+                 </div>
+                 <div class="time-sep">:</div>
+                     <div class="time-col">
+                       <button onclick="changeMn(1)">&#8963;</button>
+                     <div class="time-val-box" id="mn-box">00</div>
+                       <button onclick="changeMn(-1)">&#8964;</button>
+                     </div>
+                     <div class="ampm-col">
+                       <button class="ampm-btn active" id="am-btn" onclick="setAmPm('AM')">AM</button>
+                       <button class="ampm-btn" id="pm-btn" onclick="setAmPm('PM')">PM</button>
+                     </div>
+                  </div>
+                 </div>
+
+                 <div class="dt-popup-footer">
+                     <button class="dt-btn-cancel" onclick="closePicker()">Cancel</button>
+                      <button class="dt-btn-ok" onclick="confirmPicker()">OK</button>
+                 </div>
+             </div>
+         </div>
+
+    
+     </body>
+</html>
