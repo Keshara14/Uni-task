@@ -2,9 +2,9 @@ from flask import Flask, render_template, request, redirect, url_for, session, j
 from datetime import datetime
 import re
 
-# Initialize Flask application
+
 app = Flask(__name__)
-# Session security key for encrypting session data
+
 app.secret_key = 'student-planner-secret-key-2024'
 
 # =====================================================
