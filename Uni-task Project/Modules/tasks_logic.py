@@ -1,43 +1,53 @@
-from flask import Flask, render_template
-import mysql.connector
+from db_conn import execute_query
 
-app = Flask(__name__)
+def get_user_tasks(user_id, status=None, category=None):
+    query = "SELECT * FROM tasks WHERE user_id = %s"
+    params = [user_id]
+    
+    if status and status != 'all':
+        query += " AND status = %s"
+        params.append(status)
+    
+    if category and category != 'all':
+        query += " AND category = %s"
+        params.append(category)
+    
+    query += " ORDER BY deadline ASC"
+    
+    return execute_query(query, tuple(params), fetch=True)
 
-# Database settings
-db_config = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'your_password',
-    'database': 'academic_db'
-}
+def create_task(user_id, title, description, category, deadline):
+    query = """
+        INSERT INTO tasks (user_id, title, description, category, deadline, status)
+        VALUES (%s, %s, %s, %s, %s, 'pending')
+    """
+    result = execute_query(query, (user_id, title, description, category, deadline))
+    return result is not False
 
-@app.route('/dashboard')
-def dashboard():
-    # Connect to MySQL
-    conn = mysql.connector.connect(**db_config)
-    cursor = conn.cursor(dictionary=True) # Fetch rows as dictionaries
-    
-    # 3. Data Fetching process
-    cursor.execute("SELECT id, title, description, category, due_date, status FROM tasks")
-    tasks = cursor.fetchall()
-    
-    # Calculating stats for summary cards
-    total_tasks = len(tasks)
-    completed = sum(1 for t in tasks if t['status'] == 'Completed')
-    pending = total_tasks - completed
-    rate = (completed / total_tasks * 100) if total_tasks > 0 else 0.0
-    
-    cursor.close()
-    conn.close()
-    
-    # Passing data to HTML template
-    return render_template('dashboard.html', 
-                           tasks=tasks, 
-                           total_tasks=total_tasks, 
-                           completed=completed, 
-                           pending=pending, 
-                           rate=rate)
+def update_task_status(task_id, user_id, status):
+    query = "UPDATE tasks SET status = %s WHERE id = %s AND user_id = %s"
+    result = execute_query(query, (status, task_id, user_id))
+    return result is not False
 
-if __name__ == '__main__':
-    app.run(debug=True)
+def get_task_summary(user_id):
+    tasks = get_user_tasks(user_id)
+    total = len(tasks)
+    completed = sum(1 for t in tasks if t['status'] == 'completed')
+    pending = total - completed
     
+    categories = {
+        'assignment': 0,
+        'exam': 0,
+        'lecture': 0,
+        'other': 0
+    }
+    for task in tasks:
+        categories[task['category']] += 1
+    
+    return {
+        'total': total,
+        'completed': completed,
+        'pending': pending,
+        'completion_rate': (completed / total * 100) if total > 0 else 0,
+        'categories': categories
+    }
