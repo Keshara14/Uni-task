@@ -3,7 +3,7 @@ from mysql.connector import Error
 
 DB_CONFIG = {
     'host': 'localhost',          
-    'database': 'student_planner', 
+    'database': 'studentdatabase', 
     'user': 'root',               
     'password': ''                
                                   
