@@ -13,13 +13,15 @@
     
     <link rel="stylesheet" href="{{ url_for('static', filename='main_theme.css') }}">
     
-    {% block extra_css %}{% endblock %}
+    {% block extra_css %}{% endblock %} 
 </head>
 <body>
+    {% block background %}{% endblock %}
+
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url_for('dashboard') if session.user_id else url_for('login') }}">
-                <img src="{{ url_for('static', filename='logo.png') }}" alt="Unitask Logo" class="me-2" style="height: 30px;">
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Unitask Logo" class="me-2" style="height: 60px;">
                 <span>Unitask</span>
             </a>
             
@@ -45,21 +47,30 @@
                                 <i class="fas fa-sign-out-alt me-1"></i> Logout
                             </a>
                         </li>
-                        <li class="nav-item ms-2">
-                            <span class="badge bg-primary rounded-pill px-3 py-2">
-                                <i class="fas fa-user me-1"></i> {{ session.username }}
-                            </span>
-                        </li>
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('login') }}">Login</a>
                         </li>
+                        <li class="nav-item nav-separator d-none d-lg-flex align-items-center">
+                            |
+                        </li>
                         <li class="nav-item">
-                            <a class="btn btn-primary btn-sm ms-2" href="{{ url_for('signup') }}">Sign Up</a>
+                            <a class="nav-link" href="{{ url_for('signup') }}">Sign Up</a>
                         </li>
                     {% endif %}
                 </ul>
             </div>
+
+            {% if session.user_id %}
+            <div class="user-profile-container">
+                <div class="user-profile-badge">
+                    <div class="user-avatar-circle">
+                        {{ session.username[0]|upper }}
+                    </div>
+                    <span class="user-name">{{ session.username }}</span>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </nav>
     
@@ -67,10 +78,43 @@
         {% block content %}{% endblock %}
     </main>
     
-
     <footer class="footer">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2026 Unitask - University Academic Planner. All rights reserved.</p>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-md-4">
+                    <h5 class="footer-heading mb-3">Uni-task Student Academic Planner</h5>
+                    <p class="text-muted small mb-0">A professional academic planning platform built for students at the Institute of Technology, University of Moratuwa.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-heading mb-3">Development Team</h5>
+                    <p class="text-muted small mb-1">Group 05</p>
+                    <ul class="list-unstyled footer-list text-muted small mb-0">
+                        <li>Samod</li>
+                        <li>Abhijukan</li>
+                        <li>Nelka</li>
+                        <li>Thilina</li>
+                        <li>Amandi</li>
+                        <li>Anuradha</li>
+                        <li>Thathsarani</li>
+                        <li>Hansaji</li>
+                        <li>Harindu</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="footer-heading mb-3">Institution</h5>
+                    <p class="text-muted small mb-1">Division of Information Technology</p>
+                    <p class="text-muted small mb-0">Institute of Technology, University of Moratuwa</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom-bar">
+            <div class="container">
+                <div class="row mt-4">
+                    <div class="col text-center py-3">
+                        <p class="small footer-bottom-text mb-0">&copy; 2026 Unitask - University Academic Planner. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
     
