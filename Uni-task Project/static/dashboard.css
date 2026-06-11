@@ -659,25 +659,37 @@ main.main-content {
     padding: 1rem 1.5rem;
 }
 
+
 #taskModal .btn-secondary {
-    background: #f0f2f5;
+    background: #dc2626;
     border: none;
-    color: #636e72;
+    color: white;
     padding: 8px 20px;
     border-radius: 8px;
+    transition: background 0.18s;
+    transform: 0.1s;
 }
 
 #taskModal .btn-secondary:hover {
-    background: #e0e4e8;
+    background: #b91c1c;
 }
 
+#taskModal .btn-secondary:active{
+    transform:scale(0.97);
+}
 #taskModal .btn-primary {
-    background: #0a2349;
+    background: #16a34a;
     border: none;
     padding: 8px 24px;
     border-radius: 8px;
+    transition: background 0.18s ;
+    transform: 0.1s;
 }
 
 #taskModal .btn-primary:hover {
-    background: #1e3f52;
+    background: #15803d;
+}
+
+#taskModal .btn-primary:active{
+    transform: scale(0.97);
 }
