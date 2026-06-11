@@ -8,7 +8,7 @@ def hash_password(password):
 
 def verify_password(password,hash_password):
     return bcrypt.checkpw(password.encode('utf-8'),
-    hashed_password.encode('utf-8'))
+    hash_password.encode('utf-8'))
 
 def validate_email(email):
     pattern=r'^[\w\.-]+@[\w\.-]+\.\w+$'
