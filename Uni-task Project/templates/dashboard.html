@@ -49,6 +49,7 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 {% endblock %}
 
 {% block content %}
@@ -257,16 +258,16 @@
                 <input type="hidden" id="taskId" name="taskId">
                 <div class="modal-body p-4">
                     <div class="mb-3">
-                        <label for="taskTitle" class="form-label">Task Title</label>
+                        <label for="taskTitle" class="form-label"><i class="ti ti-pencil"></i>Task Title</label>
                         <input type="text" class="form-control" id="taskTitle" name="title" required>
                     </div>
                     <div class="mb-3">
-                        <label for="taskDescription" class="form-label">Description</label>
+                        <label for="taskDescription" class="form-label"><i class="ti ti-align-left"></i>Description</label>
                         <textarea class="form-control" id="taskDescription" name="description" rows="3"></textarea>
                     </div>
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="taskCategory" class="form-label">Category</label>
+                            <label for="taskCategory" class="form-label"><i class="ti ti-tag"></i>Category</label>
                             <select class="form-select" id="taskCategory" name="category" required>
                                 <option value="assignment">Assignment</option>
                                 <option value="exam">Exam</option>
@@ -275,14 +276,14 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label for="taskDeadline" class="form-label">Deadline</label>
+                            <label for="taskDeadline" class="form-label"><i class="ti ti-calendar-event"></i>Deadline</label>
                             <input type="datetime-local" class="form-control" id="taskDeadline" name="deadline" required>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Save Task</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()"><i class="ti ti-x"></i>Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="ti ti-device-floppy"></i>Save Task</button>
                 </div>
             </form>
         </div>
